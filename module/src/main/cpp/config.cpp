@@ -137,7 +137,7 @@ namespace Config {
             return g_config;
         }
         
-        const char* configPath = "/data/adb/modules/zygisk-myinjector/config.json";
+        const char* configPath = "/data/adb/zygisk-myinjector/config.json";
         std::ifstream file(configPath);
         
         if (!file.is_open()) {
