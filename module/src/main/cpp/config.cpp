@@ -139,7 +139,7 @@ namespace Config {
         if (g_configLoaded) {
             return g_config;
         }
-        
+
         std::string configPath = "";
         if (g_packageName != ""){
             std::string configPath = "/data/data/" + g_packageName + "/files/config.json";
@@ -149,7 +149,7 @@ namespace Config {
         std::ifstream file(configPath.c_str());
         
         if (!file.is_open()) {
-            LOGE("Failed to open config file: %s", configPath);
+            LOGE("Failed to open config file: %s", configPath.c_str());
             g_configLoaded = true;
             return g_config;
         }
