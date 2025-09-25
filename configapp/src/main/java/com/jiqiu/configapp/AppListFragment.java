@@ -276,6 +276,7 @@ public class AppListFragment extends Fragment implements AppListAdapter.OnAppTog
                             configManager.addSoFileToApp(appInfo.getPackageName(), soFile);
                         }
                     }
+                    configManager.cpConfigToApp(appInfo.getPackageName());
                 })
                 .setNegativeButton("取消", null);
         

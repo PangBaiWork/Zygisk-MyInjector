@@ -11,7 +11,11 @@ namespace Config {
     
     static ModuleConfig g_config;
     static bool g_configLoaded = false;
-    
+    static std::string g_packageName = nullptr;
+    void setPackageName(char* packageName){
+        std::string name(packageName);
+        g_packageName = name;
+    }
     // Simple JSON parser for our specific format
     std::string extractValue(const std::string& json, const std::string& key) {
         size_t keyPos = json.find("\"" + key + "\"");
@@ -131,14 +135,16 @@ namespace Config {
              packageName.c_str(), appConfig.enabled, methodName, appConfig.soFiles.size(),
              appConfig.gadgetConfig ? "yes" : "no");
     }
-    
-    ModuleConfig readConfig() {
+    ModuleConfig readConfig( ) {
         if (g_configLoaded) {
             return g_config;
         }
-        
-        const char* configPath = "/data/adb/zygisk-myinjector/config.json";
-        std::ifstream file(configPath);
+        if (g_packageName != nullptr){
+            std::string configPath = "/data/data/" + g_packageName + "/files/config.json";
+        }else{
+            std::string configPath = "/data/adb/modules/zygisk-myinjector/config.json";
+        }
+        std::ifstream file(configPath.c_str());
         
         if (!file.is_open()) {
             LOGE("Failed to open config file: %s", configPath);

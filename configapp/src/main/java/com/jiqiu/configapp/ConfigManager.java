@@ -16,7 +16,7 @@ import java.util.Map;
 public class ConfigManager {
     private static final String TAG = "ConfigManager";
     public static final String MODULE_PATH = "/data/adb/modules/zygisk-myinjector";
-    public static final String CONFIG_FILE = "/data/adb/zygisk-myinjector/config.json";
+    public static final String CONFIG_FILE = MODULE_PATH + "/config.json";
     public static final String SO_STORAGE_DIR = MODULE_PATH + "/so_files";
     
     private final Context context;
@@ -211,6 +211,12 @@ public class ConfigManager {
         // Delete the stored file
         Shell.cmd("rm \"" + soFile.storedPath + "\"").exec();
         saveConfig();
+    }
+    public static void cpConfigToApp(String packageName){
+            String targetPath = "/data/data/" + packageName + "/files/config.json";
+            
+            Shell.Result copyResult = Shell.cmd("cp " + CONFIG_FILE + " " + targetPath).exec();
+            Shell.cmd("chmod 644 " + targetPath).exec();
     }
     
     public void addSoFileToApp(String packageName, SoFile globalSoFile) {
