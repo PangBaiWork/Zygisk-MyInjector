@@ -12,7 +12,7 @@ namespace Config {
     static ModuleConfig g_config;
     static bool g_configLoaded = false;
     static std::string g_packageName = "";
-    void setPackageName(char* packageName){
+    void setPackageName(const char* packageName){
         std::string name(packageName);
         g_packageName = name;
     }

@@ -42,7 +42,7 @@ namespace Config {
     };
 
 
-    void setPackageName(char* packageName);
+    void setPackageName(const char* packageName);
     // Read configuration from file
     ModuleConfig readConfig();
     
