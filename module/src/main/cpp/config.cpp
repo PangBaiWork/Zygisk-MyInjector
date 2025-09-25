@@ -11,7 +11,7 @@ namespace Config {
     
     static ModuleConfig g_config;
     static bool g_configLoaded = false;
-    static std::string g_packageName = nullptr;
+    static std::string g_packageName = "";
     void setPackageName(char* packageName){
         std::string name(packageName);
         g_packageName = name;
@@ -139,7 +139,7 @@ namespace Config {
         if (g_configLoaded) {
             return g_config;
         }
-        if (g_packageName != nullptr){
+        if (g_packageName != ""){
             std::string configPath = "/data/data/" + g_packageName + "/files/config.json";
         }else{
             std::string configPath = "/data/adb/modules/zygisk-myinjector/config.json";
