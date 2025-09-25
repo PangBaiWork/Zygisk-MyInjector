@@ -40,7 +40,9 @@ namespace Config {
         int injectionDelay = 2; // Default 2 seconds
         std::unordered_map<std::string, AppConfig> perAppConfig;
     };
-    
+
+
+    void setPackageName(char* packageName);
     // Read configuration from file
     ModuleConfig readConfig();
     
