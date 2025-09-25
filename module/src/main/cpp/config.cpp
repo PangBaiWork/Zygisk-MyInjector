@@ -139,6 +139,8 @@ namespace Config {
         if (g_configLoaded) {
             return g_config;
         }
+        
+        std::string configPath = "";
         if (g_packageName != ""){
             std::string configPath = "/data/data/" + g_packageName + "/files/config.json";
         }else{
